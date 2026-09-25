@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Arsiel 🍂 | Our Story</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #2b171f 0%, #12090d 100%);
+            color: #fceee9;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Falling Maple Leaves */
+        .leaf {
+            position: absolute;
+            top: -10vh;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); }
+            50% { transform: translateY(50vh) translateX(60px) rotate(180deg); }
+            100% { transform: translateY(110vh) translateX(-60px) rotate(360deg); }
+        }
+
+        /* Glassmorphism Card */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(35, 18, 22, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(224, 122, 95, 0.25);
+            padding: 45px 35px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(224, 122, 95, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .envelope-box {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: floatHeart 3s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+            color: #ffb4a2;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #ebd7d0;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .highlight-text {
+            color: #ff8fa3;
+            font-style: italic;
+        }
+
+        /* Form & Textarea */
+        textarea {
+            width: 100%;
+            height: 160px;
+            background: rgba(20, 10, 13, 0.6);
+            border: 1px solid rgba(224, 122, 95, 0.4);
+            border-radius: 14px;
+            padding: 15px;
+            color: #fceee9;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            resize: none;
+            outline: none;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #ffb4a2;
+            box-shadow: 0 0 10px rgba(255, 180, 162, 0.2);
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: #b59b92;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #e07a5f 0%, #b85d43 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1rem;
+            border-radius: 35px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 8px 25px rgba(224, 122, 95, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(224, 122, 95, 0.6);
+            background: linear-gradient(135deg, #f48469 0%, #c86d51 100%);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            position: relative;
+            min-height: 60px;
+            align-items: center;
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.05);
+            color: #d8c5be;
+            border: 1px solid rgba(252, 238, 233, 0.2);
+            box-shadow: none;
+            position: absolute;
+            transition: all 0.15s ease-out;
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .fade-in {
+            animation: fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(15px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .kdrama-quote {
+            border-left: 3px solid #ffb4a2;
+            text-align: left;
+            margin: 20px 0 25px 0;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vignette"></div>
+    <div id="leaves-container"></div>
+
+    <!-- Screen 1: Envelope Intro -->
+    <div class="container fade-in" id="screen-envelope" onclick="openEnvelope()" style="cursor: pointer;">
+        <div class="envelope-box">💌</div>
+        <h1>You've Got Mail...</h1>
+        <p>A quiet autumn evening whisper, delivered straight from my heart to yours. <br><span style="font-size: 0.85rem; color: #ffb4a2;">(Tap anywhere to open)</span></p>
+        <button class="btn">Open Letter 🍂</button>
+    </div>
+
+    <!-- Screen 2: The Honest Confession -->
+    <div class="container hidden" id="screen-message">
+        <span style="font-size: 2rem;">🍁</span>
+        <h1>Dear Arsiel,</h1>
+        <div class="kdrama-quote">
+            <p style="margin-bottom: 0; font-size: 1rem;">
+                I know you don't know me too much, and I don't know you too much either... but still, believe me, I fell in love with you. 
+                <br><br>
+                <span class="highlight-text">I know you always think my seriousness is just jokes. Trust me... I am not joking at all.</span>
+            </p>
+        </div>
+        <button class="btn" onclick="goToQuestion()">Read My Question 💌</button>
+    </div>
+
+    <!-- Screen 3: Life Partner Question with Dodging No Button -->
+    <div class="container hidden" id="screen-question">
+        <span style="font-size: 2rem;">✨</span>
+        <h2>Will you be my life partner forever?</h2>
+        <p>Choose wisely... though my universe only has room for one answer.</p>
+        <div class="btn-group" id="btn-container">
+            <button class="btn" onclick="goToFinal()">Yes ❤️</button>
+            <button class="btn btn-no" id="no-btn" onmouseover="dodgeButton()" onclick="dodgeButton()">No 🙈</button>
+        </div>
+    </div>
+
+    <!-- Screen 4: Marriage Proposal & Dream Girl -->
+    <div class="container hidden" id="screen-final">
+        <span style="font-size: 2.5rem;">🥺🫶</span>
+        <h1 style="color: #ff8fa3; margin-top: 10px;">Forever & Always</h1>
+        <p style="font-size: 1.15rem; font-family: 'Playfair Display', serif; color: #ffb4a2; line-height: 1.6;">
+            "Will you marry me, Miss Arsiel? 🥺🫶"
+        </p>
+        <p style="margin-bottom: 20px;">
+            Will you be my dream girl, today, tomorrow, and through all our seasons?
+        </p>
+        <button class="btn" onclick="goToInputScreen()">Our Story Begins Now 🍂</button>
+    </div>
+
+    <!-- Screen 5: Her Written Answer Form (Linked with your Access Key) -->
+    <div class="container hidden" id="screen-input">
+        <span style="font-size: 2rem;">✍️</span>
+        <h2 style="color: #ff8fa3;">Arsiel, Now It's Your Turn</h2>
+        <p style="font-size: 0.95rem; margin-bottom: 15px;">
+            Tell me your honest feelings about me. (Max 2000 words)
+        </p>
+        
+        <form action="https://api.web3forms.com/submit" method="POST" onsubmit="handleFormSubmit(event)">
+            <!-- Your Web3Forms Access Key -->
+            <input type="hidden" name="access_key" value="f614c5f0-e4fe-42af-b4dd-902af9f35ced">
+            <input type="hidden" name="subject" value="New Love Response from Arsiel! 💌">
+            
+            <textarea name="Arsiel_Message" maxlength="12000" placeholder="Type your honest thoughts here..." oninput="updateCounter(this)" required></textarea>
+            <div class="char-counter" id="counter">0 / 2000 words</div>
+            
+            <button type="submit" class="btn" style="width: 100%;">Send My Heart to Him 💌</button>
+        </form>
+    </div>
+
+    <!-- Screen 6: Thank You / Success Screen -->
+    <div class="container hidden" id="screen-success">
+        <span style="font-size: 3rem;">❤️✨</span>
+        <h1 style="color: #ff8fa3; margin-top: 15px;">Message Received</h1>
+        <p style="font-size: 1.1rem; line-height: 1.8;">
+            Thank you for sharing your heart with me, Arsiel. This is a moment I will treasure forever. 🍂
+        </p>
+    </div>
+
+    <script>
+        // Falling Maple Leaves Generation
+        const leavesContainer = document.getElementById('leaves-container');
+        const leafSymbols = ['🍁', '🍂', '✨', '🍁'];
+        
+        for (let i = 0; i < 25; i++) {
+            const leaf = document.createElement('div');
+            leaf.classList.add('leaf');
+            leaf.innerHTML = leafSymbols[Math.floor(Math.random() * leafSymbols.length)];
+            leaf.style.left = Math.random() * 100 + 'vw';
+            leaf.style.top = -20 + Math.random() * -20 + 'vh';
+            leaf.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+            leaf.style.animationDuration = (Math.random() * 7 + 4) + 's';
+            leaf.style.animationDelay = (Math.random() * 5) + 's';
+            leavesContainer.appendChild(leaf);
+        }
+
+        function switchScreen(hideId, showId) {
+            const hideEl = document.getElementById(hideId);
+            const showEl = document.getElementById(showId);
+            
+            hideEl.classList.remove('fade-in');
+            hideEl.style.opacity = '0';
+            setTimeout(() => {
+                hideEl.classList.add('hidden');
+                showEl.classList.remove('hidden');
+                showEl.classList.add('fade-in');
+            }, 400);
+        }
+
+        function openEnvelope() { switchScreen('screen-envelope', 'screen-message'); }
+        function goToQuestion() { switchScreen('screen-message', 'screen-question'); }
+        function goToFinal() { switchScreen('screen-question', 'screen-final'); }
+        function goToInputScreen() { switchScreen('screen-final', 'screen-input'); }
+
+        let dodgeCount = 0;
+        function dodgeButton() {
+            const noBtn = document.getElementById('no-btn');
+            const messages = ["Nice try! 😉", "Not an option! 🙈", "Wrong button! ❤️", "Catch me if you can! 🍂", "Only YES is allowed! ✨"];
+            const randomX = (Math.random() - 0.5) * 260;
+            const randomY = (Math.random() - 0.5) * 140;
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            noBtn.innerHTML = messages[dodgeCount % messages.length];
+            dodgeCount++;
+        }
+
+        function updateCounter(textarea) {
+            const words = textarea.value.trim() ? textarea.value.trim().split(/\s+/).length : 0;
+            document.getElementById('counter').innerText = `${words} / 2000 words`;
+            if (words > 2000) {
+                document.getElementById('counter').style.color = '#ff8fa3';
+            } else {
+                document.getElementById('counter').style.color = '#b59b92';
+            }
+        }
+
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    switchScreen('screen-input', 'screen-success');
+                } else {
+                    alert('Something went wrong, but your heart is felt! Try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please make sure you are connected to the internet!');
+            }
+        }
+    </script>
+</body>
+</html>
